@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#102b26" />
+  <meta name="description" content="Global Heights Society resident and management portal." />
+  <title>Global Heights | RWA Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="Global Heights home">
+        <span class="brand-mark">GH</span>
+        <span><strong>GLOBAL HEIGHTS</strong><small>RESIDENTIAL COMMUNITY</small></span>
+      </a>
+
+      <div class="society-mini">
+        <div class="society-mini-icon">⌂</div>
+        <div><b>Global Heights</b><small>Sohna Road · Gurgaon 122103</small></div>
+      </div>
+
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-link active" data-page="dashboard"><span>▦</span> Overview</button>
+        <button class="nav-link" data-auth-only hidden data-page="complaints"><span>◉</span> Complaints</button>
+        <button class="nav-link" data-auth-only hidden data-page="maintenance"><span>₹</span> Maintenance</button>
+        <button class="nav-link" data-auth-only hidden data-page="payments"><span>↗</span> Payment history</button>
+        <button class="nav-link" data-auth-only hidden data-page="residents"><span>♙</span> Residents</button>
+        <button class="nav-link" data-page="announcements"><span>▤</span> Notices & events</button>
+        <button class="nav-link" data-page="amenities"><span>✧</span> Amenities</button>
+      </nav>
+
+      <div class="nav-label">SUPPORT</div>
+      <nav class="main-nav">
+        <button class="nav-link" data-page="contact"><span>⌖</span> Help & contact</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <span class="help-icon">✦</span>
+          <b>Need assistance?</b>
+          <p>Reach the society management team.</p>
+          <button data-page="contact">Contact support <span>→</span></button>
+        </div>
+        <div class="sidebar-foot"><span class="online-dot"></span> Community portal <span class="version">v1.0</span></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button>
+        <div class="crumb"><span>Workspace</span><b>/</b><strong id="pageCrumb">Overview</strong></div>
+
+        <div class="top-actions">
+          <button class="btn btn-outline" id="authBtn" type="button">Sign in / Register</button>
+          <button class="btn btn-outline" id="logoutBtn" type="button" hidden>Sign out</button>
+          <div class="role-switch"><span class="role-dot"></span><span id="roleLabel">Not signed in</span></div>
+          <button class="icon-btn" id="themeToggle" title="Toggle theme" aria-label="Toggle theme">◐</button>
+          <button class="icon-btn notification-btn" id="noticeBell" title="Notifications" aria-label="Notifications">♧<em></em></button>
+
+          <div class="user-chip" data-auth-only hidden>
+            <div class="avatar" id="profileAvatar">GH</div>
+            <div><b id="profileChipName">Resident</b><small id="profileFlatLabel">Resident account</small></div>
+          </div>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <section class="page active" id="dashboard">
+          <div class="hero">
+            <div class="hero-copy">
+              <span class="eyebrow"><i></i> YOUR COMMUNITY, CONNECTED</span>
+              <h1 id="welcomeTitle">Welcome to Global Heights<span>.</span></h1>
+              <p id="welcomeDescription">Explore Global Heights community information, amenities, notices and support. Sign in to access your personal resident dashboard.</p>
+              <div class="hero-meta">
+                <span>⌖ Sohna Road, Gurgaon</span><span>•</span>
+                <span id="todayDate">Today</span>
+              </div>
+            </div>
+            <div class="hero-art">
+              <div class="hero-stat"><span>COMMUNITY STATUS</span><b><i></i> All systems normal</b></div>
+            </div>
+          </div>
+
+          <!-- Resident-only dashboard content -->
+          <div data-auth-only hidden>
+            <div class="section-heading">
+              <div><span class="eyebrow muted">AT A GLANCE</span><h2>Your society overview</h2></div>
+              <button class="text-action" data-page="announcements">View all updates <span>→</span></button>
+            </div>
+
+            <div class="stats-grid">
+              <article class="stat-card">
+                <div class="stat-top"><span class="stat-icon green">₹</span><span class="stat-caption">THIS MONTH</span></div>
+                <p>Maintenance due</p>
+                <h3 id="maintenanceAmount">₹2,500</h3>
+                <div class="stat-bottom"><span class="status-pill warning">Pending</span><span>Due 10 Nov 2026</span></div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-top"><span class="stat-icon blue">◉</span><span class="stat-caption">YOUR REQUESTS</span></div>
+                <p>Open complaints</p>
+                <h3 id="openStat">0</h3>
+                <div class="stat-bottom"><span class="status-pill info">In progress</span><span>Track your requests</span></div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-top"><span class="stat-icon violet">♙</span><span class="stat-caption">COMMUNITY</span></div>
+                <p>Registered residents</p>
+                <h3>Community</h3>
+                <div class="stat-bottom"><span class="status-pill success">Active community</span><span>Across all blocks</span></div>
+              </article>
+              <article class="stat-card">
+                <div class="stat-top"><span class="stat-icon amber">▤</span><span class="stat-caption">LATEST UPDATE</span></div>
+                <p>Announcements</p>
+                <h3 id="noticeStat">0</h3>
+                <div class="stat-bottom"><span class="status-pill info">Stay informed</span><span>Society updates</span></div>
+              </article>
+            </div>
+
+            <div class="dashboard-columns">
+              <div class="stack">
+                <div class="section-heading compact">
+                  <div><span class="eyebrow muted">QUICK ACCESS</span><h2>What would you like to do?</h2></div>
+                </div>
+
+                <div class="quick-grid">
+                  <button class="quick-card" data-page="maintenance"><span class="quick-icon green">₹</span><b>Pay maintenance</b><small>View your monthly dues</small><span class="quick-arrow">↗</span></button>
+                  <button class="quick-card" data-action="new-complaint"><span class="quick-icon blue">＋</span><b>Raise a complaint</b><small>Report an issue to RWA</small><span class="quick-arrow">↗</span></button>
+                  <button class="quick-card" data-page="announcements"><span class="quick-icon violet">▤</span><b>Society updates</b><small>Notices and events</small><span class="quick-arrow">↗</span></button>
+                  <button class="quick-card" data-page="amenities"><span class="quick-icon amber">✧</span><b>Explore amenities</b><small>Facilities and timings</small><span class="quick-arrow">↗</span></button>
+                </div>
+
+                <div class="panel photo-panel">
+                  <div class="panel-head">
+                    <div><span class="eyebrow muted">LIFE AT GLOBAL HEIGHTS</span><h2>Spaces to feel at home</h2></div>
+                    <button class="text-action" data-page="amenities">Explore <span>→</span></button>
+                  </div>
+                  <div class="photo-strip">
+                    <div class="photo-tile photo-one"><span>Community living</span></div>
+                    <div class="photo-tile photo-two"><span>Green spaces</span></div>
+                    <div class="photo-tile photo-three"><span>Everyday comfort</span></div>
+                  </div>
+                  <p class="photo-note">Illustrative community imagery. Replace with approved Global Heights photographs before public launch.</p>
+                </div>
+              </div>
+
+              <div class="stack">
+                <div class="panel">
+                  <div class="panel-head">
+                    <div><span class="eyebrow muted">LATEST</span><h2>Community announcements</h2></div>
+                    <button class="round-arrow" data-page="announcements">→</button>
+                  </div>
+                  <div id="dashboardAnnouncements" class="announcement-list"></div>
+                </div>
+
+                <div class="panel residence-panel">
+                  <div class="panel-head">
+                    <div><span class="eyebrow muted">YOUR HOME</span><h2>Residence details</h2></div>
+                    <span class="home-badge">⌂</span>
+                  </div>
+                  <div class="flat-highlight">
+                    <div><small>YOUR FLAT</small><strong id="residentFlat">Not added</strong></div>
+                    <span id="residentBlock">BLOCK —</span>
+                  </div>
+                  <div class="residence-details">
+                    <div><small>Resident</small><b id="residentFullName">—</b></div>
+                    <div><small>Floor</small><b id="residentFloor">—</b></div>
+                    <div><small>Society</small><b>Global Heights</b></div>
+                    <div><small>Location</small><b>Sohna Road, Gurgaon</b></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" data-auth-only hidden id="complaints">
+          <div class="page-title-row">
+            <div><span class="eyebrow muted">RESIDENT SERVICES</span><h1>Complaints & requests</h1><p>Raise an issue and follow its progress until it is resolved.</p></div>
+            <button class="btn btn-primary" id="newComplaintBtn">＋ New complaint</button>
+          </div>
+          <div class="stats-grid mini-stats">
+            <article class="stat-card"><p>Total requests</p><h3 id="totalComplaints">0</h3></article>
+            <article class="stat-card"><p>Pending</p><h3 id="pendingComplaints">0</h3></article>
+            <article class="stat-card"><p>Resolved</p><h3 id="resolvedComplaints">0</h3></article>
+          </div>
+          <div class="panel">
+            <div class="panel-head wrap-head">
+              <div><h2>All complaints</h2><p class="subtle">Your submitted service requests</p></div>
+              <div class="filters">
+                <input id="complaintSearch" class="search-input" placeholder="Search complaints..." />
+                <select id="complaintFilter" class="filter-select">
+                  <option value="all">All statuses</option>
+                  <option value="Pending">Pending</option>
+                  <option value="In progress">In progress</option>
+                  <option value="Resolved">Resolved</option>
+                </select>
+              </div>
+            </div>
+            <div id="complaintList" class="complaint-list"></div>
+          </div>
+        </section>
+
+        <section class="page" data-auth-only hidden id="maintenance">
+          <div class="page-title-row">
+            <div><span class="eyebrow muted">BILLING & FINANCE</span><h1>Maintenance</h1><p>View your society maintenance dues and payment instructions.</p></div>
+            <span class="status-pill warning large-pill">● Payment pending</span>
+          </div>
+          <div class="billing-layout">
+            <div class="bill-card">
+              <div class="bill-card-top"><span class="bill-symbol">₹</span><span class="status-pill warning">Pending</span></div>
+              <small>CURRENT BILL · NOVEMBER 2026</small>
+              <h2>₹2,500<span>.00</span></h2>
+              <p>Monthly maintenance contribution</p>
+              <div class="bill-divider"></div>
+              <div class="bill-meta">
+                <div><small>Due date</small><b>10 November 2026</b></div>
+                <div><small>Flat number</small><b id="maintenanceFlat">Your registered flat</b></div>
+              </div>
+              <button class="btn btn-primary wide" id="paymentInfoBtn">View payment instructions</button>
+              <small class="demo-disclaimer">Payment gateway is not connected in this preview.</small>
+            </div>
+            <div class="panel">
+              <div class="panel-head">
+                <div><span class="eyebrow muted">BILL BREAKDOWN</span><h2>Where your maintenance goes</h2></div>
+              </div>
+              <div class="breakdown">
+                <div><span><i class="dot d1"></i>Common area upkeep</span><b>₹900</b></div>
+                <div class="bar"><i style="width:36%"></i></div>
+                <div><span><i class="dot d2"></i>Security services</span><b>₹750</b></div>
+                <div class="bar"><i style="width:30%"></i></div>
+                <div><span><i class="dot d3"></i>Water & electricity</span><b>₹500</b></div>
+                <div class="bar"><i style="width:20%"></i></div>
+                <div><span><i class="dot d4"></i>Repairs & reserve</span><b>₹350</b></div>
+                <div class="bar"><i style="width:14%"></i></div>
+              </div>
+              <div class="info-callout">This is an illustrative breakdown for the demo. The RWA administrator should confirm the actual allocation.</div>
+            </div>
+          </div>
+          <div class="panel table-panel">
+            <div class="panel-head"><div><h2>Maintenance ledger</h2><p class="subtle">Recent billing records</p></div></div>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Billing month</th><th>Due date</th><th>Amount</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>November 2026</td><td>10 Nov 2026</td><td>₹2,500</td><td><span class="status-pill warning">Pending</span></td></tr>
+                  <tr><td>October 2026</td><td>10 Oct 2026</td><td>₹2,500</td><td><span class="status-pill success">Paid</span></td></tr>
+                  <tr><td>September 2026</td><td>10 Sep 2026</td><td>₹2,500</td><td><span class="status-pill success">Paid</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" data-auth-only hidden id="payments">
+          <div class="page-title-row">
+            <div><span class="eyebrow muted">BILLING & FINANCE</span><h1>Payment history</h1><p>Review recorded maintenance payments for your residence.</p></div>
+          </div>
+          <div class="panel table-panel">
+            <div class="panel-head"><div><h2>Recent transactions</h2><p class="subtle">Demo records — verify with the RWA accounts team.</p></div></div>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th>Transaction</th><th>Payment date</th><th>Period</th><th>Amount</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr><td>#GH-2026-009</td><td>05 Oct 2026</td><td>October 2026</td><td>₹2,500</td><td><span class="status-pill success">Paid</span></td></tr>
+                  <tr><td>#GH-2026-008</td><td>06 Sep 2026</td><td>September 2026</td><td>₹2,500</td><td><span class="status-pill success">Paid</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" data-auth-only hidden id="residents">
+          <div class="page-title-row">
+            <div><span class="eyebrow muted">COMMUNITY DIRECTORY</span><h1>Residents</h1><p>Connect with your neighbours and community team.</p></div>
+          </div>
+          <div class="panel">
+            <div class="panel-head wrap-head">
+              <div><h2>Community directory</h2><p class="subtle">Sample directory entries for preview</p></div>
+              <input class="search-input" id="residentSearch" placeholder="Search resident or flat..." />
+            </div>
+            <div class="resident-table-wrap">
+              <table>
+                <thead><tr><th>Resident</th><th>Flat</th><th>Block</th><th>Community role</th></tr></thead>
+                <tbody id="residentRows">
+                  <tr><td><b>Society Office</b></td><td>Office</td><td>Main</td><td>Management</td></tr>
+                  <tr><td><b>Security Desk</b></td><td>Gate</td><td>Main</td><td>Security</td></tr>
+                  <tr><td><b>Maintenance Desk</b></td><td>Office</td><td>A</td><td>Facility team</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="announcements">
+          <div class="page-title-row">
+            <div><span class="eyebrow muted">COMMUNITY BULLETIN</span><h1>Notices & events</h1><p>Important updates from Global Heights management.</p></div>
+            <button class="btn btn-primary admin-only" data-auth-only hidden id="addNoticeBtn">＋ Add announcement</button>
+          </div>
+          <div id="announcementList" class="notice-grid"></div>
+        </section>
+
+        <section class="page" id="amenities">
+          <div class="page-title-row">
+            <div><span class="eyebrow muted">DISCOVER YOUR COMMUNITY</span><h1>Society amenities</h1><p>Explore shared spaces and facilities at Global Heights.</p></div>
+          </div>
+          <div class="amenity-grid">
+            <article class="amenity-card amenity-garden">
+              <div><span>01 / OUTDOORS</span><h2>Landscaped greens</h2><p>Relax and enjoy the community's open spaces.</p></div>
+            </article>
+            <article class="amenity-card amenity-lobby">
+              <div><span>02 / COMMUNITY</span><h2>Welcoming spaces</h2><p>Shared spaces for residents and visitors.</p></div>
+            </article>
+            <article class="amenity-card amenity-fitness">
+              <div><span>03 / WELLNESS</span><h2>Fitness & recreation</h2><p>Facility details and operating hours to be confirmed by management.</p></div>
+            </article>
+          </div>
+          <p class="photo-note">Facility photos and availability are illustrative placeholders. Confirm actual amenities, access rules and timings with Global Heights RWA.</p>
+        </section>
+
+        <section class="page" id="contact">
+          <div class="page-title-row">
+            <div><span class="eyebrow muted">WE ARE HERE TO HELP</span><h1>Help & contact</h1><p>Reach the appropriate society support desk.</p></div>
+          </div>
+          <div class="contact-grid">
+            <article class="panel contact-card">
+              <span class="contact-symbol">⌂</span>
+              <h2>RWA Management</h2>
+              <p>For maintenance, billing and community matters.</p>
+              <small>Society office · Main community area</small>
+            </article>
+            <article class="panel contact-card">
+              <span class="contact-symbol">◉</span>
+              <h2>Security desk</h2>
+              <p>For visitor access and urgent security assistance.</p>
+              <small>Main gate · <a href="tel:9142171156">9142171156</a></small>
+            </article>
+            <article class="panel contact-card">
+              <span class="contact-symbol">✉</span>
+              <h2>Email support</h2>
+              <p>Send your query to the management team.</p>
+              <small><a href="mailto:tanujtiwari407@gmail.com">tanujtiwari407@gmail.com</a></small>
+            </article>
+          </div>
+          <div class="info-callout wide-callout">
+            Contact support:
+            <a href="tel:9142171156">9142171156</a> ·
+            <a href="mailto:tanujtiwari407@gmail.com">tanujtiwari407@gmail.com</a>.
+            For emergencies, use the society's officially communicated emergency contact process.
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>© 2026 Global Heights · Resident Portal</span>
+          <span>Built for a connected community <b>✦</b></span>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" data-auth-only hidden id="complaintModal" aria-hidden="true">
+    <form class="modal" id="complaintForm">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow muted">RESIDENT SUPPORT</span>
+          <h2>Raise a complaint</h2>
+          <p>Give the management team enough detail to help.</p>
+        </div>
+        <button type="button" class="close-btn" data-close-modal>×</button>
+      </div>
+      <label for="complaintTitle">Complaint title</label>
+      <input id="complaintTitle" required maxlength="80" placeholder="e.g. Water leakage near parking" />
+      <label for="complaintCategory">Category</label>
+      <select id="complaintCategory">
+        <option>Water</option>
+        <option>Electricity</option>
+        <option>Cleaning</option>
+        <option>Security</option>
+        <option>Parking</option>
+        <option>Lift</option>
+        <option>Other</option>
+      </select>
+      <label for="complaintDescription">Description</label>
+      <textarea id="complaintDescription" required maxlength="500" rows="4" placeholder="Describe the issue and its location..."></textarea>
+      <div class="form-foot">
+        <span class="subtle">Your registered flat details will be attached.</span>
+        <button class="btn btn-primary" type="submit">Submit complaint</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-backdrop" id="noticeModal" aria-hidden="true">
+    <form class="modal" id="noticeForm">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow muted">MANAGEMENT TOOLS</span>
+          <h2>New announcement</h2>
+          <p>Share an update with residents.</p>
+        </div>
+        <button type="button" class="close-btn" data-close-modal>×</button>
+      </div>
+      <label for="noticeTitle">Title</label>
+      <input id="noticeTitle" required maxlength="90" placeholder="Announcement title" />
+      <label for="noticeBody">Message</label>
+      <textarea id="noticeBody" required maxlength="500" rows="4" placeholder="Write the announcement..."></textarea>
+      <div class="form-foot">
+        <span class="subtle">Admin preview only</span>
+        <button class="btn btn-primary" type="submit">Publish notice</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-backdrop" id="authModal" aria-hidden="true">
+    <form class="modal" id="authForm">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow muted">GLOBAL HEIGHTS ACCOUNT</span>
+          <h2 id="authHeading">Resident sign in</h2>
+          <p>Use your registered email to access shared society data.</p>
+        </div>
+        <button type="button" class="close-btn" data-close-modal>×</button>
+      </div>
+      <label for="authEmail">Email</label>
+      <input id="authEmail" type="email" required autocomplete="email" placeholder="you@example.com" />
+      <label for="authPassword">Password</label>
+      <input id="authPassword" type="password" required minlength="8" autocomplete="current-password" placeholder="At least 8 characters" />
+      <div id="registerFields" hidden>
+        <label for="authName">Full name</label>
+        <input id="authName" maxlength="80" placeholder="Your full name" />
+        <label for="authFlat">Flat number</label>
+        <input id="authFlat" maxlength="20" placeholder="e.g. A-204" />
+        <label for="authBlock">Block</label>
+        <input id="authBlock" maxlength="20" placeholder="e.g. A" />
+      </div>
+      <div class="form-foot">
+        <button type="button" class="text-action" id="authModeBtn">Create resident account</button>
+        <button class="btn btn-primary" type="submit" id="authSubmit">Sign in</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="supabase-config.js"></script>
+  <script type="module" src="supabase-integration.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
